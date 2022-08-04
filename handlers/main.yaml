@@ -1,0 +1,7 @@
+---
+- name: Restart confluent-schema-registry systemd
+  systemd:
+    name: confluent-schema-registry
+    state: restarted
+    daemon_reload: yes
+  listen: "confluent_schema_registry_restart"

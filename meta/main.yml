@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  author: Miguel Mendez
+  namespace: edgesoftwaresolutions
+  role_name: schema-registry
+  description: Ansible role to install and configure Confluent Schema Registry - Community
+  license: MIT
+  min_ansible_version: 2.10.4
+  platforms:
+    - name: Ubuntu
+      versions:
+        - bionic
+        - focal
+  galaxy_tags:
+    - clustering
+    - schema-registry
+    - confluent
+
+dependencies: []

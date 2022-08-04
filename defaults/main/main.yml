@@ -1,0 +1,10 @@
+---
+# Installation variables
+
+schema_registry_community_version: "2.13"
+schema_registry_apt_repo_key_url: "https://packages.confluent.io/deb/7.2/archive.key"
+
+schema_registry_listeners_string: "http://0.0.0.0:8081"
+schema_registry_kafka_bootstrap_servers_string: "SSL://server1:9093,SSL://server2:9093"
+schema_registry_kafka_security_protocol: "SSL"
+schema_registry_kafka_schema_topic: "_schemas"

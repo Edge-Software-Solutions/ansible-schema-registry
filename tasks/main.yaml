@@ -1,0 +1,33 @@
+---
+- name: Install apt registry key for Confluent
+  ansible.builtin.apt_key:
+    url: "{{ schema_registry_apt_repo_key_url }}"
+    state: present
+
+- name: Add apt packages repo for Confluent
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64] https://packages.confluent.io/deb/7.2 stable main"
+    state: present
+
+- name: Add apt client repo for Confluent
+  ansible.builtin.apt_repository:
+    repo: "deb https://packages.confluent.io/clients/deb {{ ansible_distribution_release }} main"
+    state: present
+
+- name: Install confluent-community-{{ schema_registry_community_version }}
+  ansible.builtin.apt:
+    name: confluent-community-{{ schema_registry_community_version }}
+    update_cache: yes
+
+- name: Template schema-registry.properties
+  ansible.builtin.template:
+    src: schema-registry.properties.j2
+    dest: /etc/schema-registry/schema-registry.properties
+  notify: "confluent_schema_registry_restart"
+
+- name: Start and enable confluent-schema-registry
+  ansible.builtin.systemd:
+    name: confluent-schema-registry
+    state: started
+    enabled: yes
+
